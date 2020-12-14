@@ -1,0 +1,20 @@
+[
+  {
+    "Rating": "Professional",
+    "Factor": "1.0"
+  },
+  {
+    "Rating": "White Collar",
+    "Factor": "1.25"
+  },
+  {
+    "Rating": "Light Manual",
+    "Factor": "1.50"
+  },
+  {
+    "Rating": "Heavy Manual",
+    "Factor": "1.75"
+  }
+]
+
+

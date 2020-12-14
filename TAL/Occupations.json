@@ -1,0 +1,26 @@
+﻿[
+      {
+        "OccupationName": "Cleaner",
+        "Rating": "Light Manual"
+      },
+      {
+        "OccupationName": "Doctor",
+        "Rating": "Professional"
+      },
+      {
+        "OccupationName": "Author",
+        "Rating": "White Collar"
+      },
+      {
+        "OccupationName": "Farmer",
+        "Rating": "Heavy Manual"
+      },
+      {
+        "OccupationName": "Mechanic",
+        "Rating": "Heavy Manual"
+      },
+      {
+        "OccupationName": "Florist",
+        "Rating": "Light Manual"
+      }
+    ]
