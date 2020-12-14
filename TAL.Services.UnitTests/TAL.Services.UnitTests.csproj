@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConfigurationProvider\TALConfigurationProvider.csproj" />
+    <ProjectReference Include="..\ConfigurationProvider\TALDataProvider.csproj" />
     <ProjectReference Include="..\TAL.Domain\TAL.Domain.csproj" />
     <ProjectReference Include="..\TAL.Service.Interfaces\TAL.Service.Interfaces.csproj" />
     <ProjectReference Include="..\TAL.Services\TAL.Services.csproj" />

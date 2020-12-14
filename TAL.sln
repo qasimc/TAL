@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Services", "03 - Servi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Infrastructure", "04 - Infrastructure", "{7BCC5EA5-D871-4B5E-B8C2-CE1D5B9C4993}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TALConfigurationProvider", "ConfigurationProvider\TALConfigurationProvider.csproj", "{F0856968-4872-4D5F-AA09-5C4B060E5F45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TALDataProvider", "ConfigurationProvider\TALDataProvider.csproj", "{F0856968-4872-4D5F-AA09-5C4B060E5F45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAL.Services.UnitTests", "TAL.Services.UnitTests\TAL.Services.UnitTests.csproj", "{DF4EDFC5-2944-4EC9-A4AF-CBAF14FFD289}"
 EndProject
