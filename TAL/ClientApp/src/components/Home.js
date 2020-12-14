@@ -5,7 +5,7 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { occupations: [], loading: true, calculatedPremiumText: '', messagestyle: '' };
         this.calculatePremium = this.calculatePremium.bind(this);
     }
     async calculatePremium() {
@@ -14,13 +14,17 @@ export class Home extends Component {
         var age = this.refs.customerage.value;
         var dob = this.refs.customerdob.value;
         var coveramount = this.refs.suminsured.value;
-        if (customername === '' || occupation === '' || age === '' || dob === '' || coveramount === '')
-            alert('not all fields filled');
+        if (customername === '' || occupation === '' || age === '' || dob === '' || coveramount === '') {
+            this.setState({
+                calculatedPremiumText: 'All fields are mandatory'
+            });
+            this.setState({ messagestyle: 'red' });
+        }
         else {
             await fetch('PremiumCalculator/GetPremium?Occupation=' + this.refs.selectedoccupation.value + '&Age=' + this.refs.customerage.value + '&CoverAmount=' + this.refs.suminsured.value)
                 .then(response => response.json())
                 .then(response =>
-                    alert('Calculated Premium: ' + response)
+                    this.setState({ calculatedPremiumText: 'Calculated Premium: ' + response, messagestyle: 'black' })
                 );
         }
     }
@@ -53,6 +57,7 @@ export class Home extends Component {
                 <p>Occupation: {occupationsPlaceHolder}</p>
                 <p>Death - Sum Insured: <input ref="suminsured" type="text" id="suminsured" /></p>
                 <button onClick={this.calculatePremium}>Calculate</button>
+                <p><label style={{color: this.state.messagestyle}}>{this.state.calculatedPremiumText}</label></p>
             </div>
         );
     }
