@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using TAL.Domain.Models;
 using TAL.Service.Interfaces;
 
 namespace TAL.Controllers
@@ -22,17 +24,26 @@ namespace TAL.Controllers
         [HttpGet("GetPremium")]
         public IActionResult GetPremium()
         {
-            string occupation = Request.Query["Occupation"];
-            string age = Request.Query["Age"];
-            string coverAmount = Request.Query["CoverAmount"];
+                string occupation = Request.Query["Occupation"];
+                string age = Request.Query["Age"];
+                string coverAmount = Request.Query["CoverAmount"];
+                double convertedCoverAmount;
+                int convertedAge;
+                ResultValue<double> premium;
+                if (Double.TryParse(coverAmount, out convertedCoverAmount) && int.TryParse(age, out convertedAge))
+                {
+                    premium = PremiumCalculator.CalculateDeathPremium(convertedCoverAmount, convertedAge, occupation);
+                }
+                else
+                {
+                    premium = Result.Failed<double>(Error.CreateFrom("InvalidInput", ErrorType.InvalidInput));
+                }
 
-            var premium = PremiumCalculator.CalculateDeathPremium(Convert.ToDouble(coverAmount), Convert.ToInt32(age), occupation);
+                if (premium.IsOk)
+                    return Ok(premium.Value);
 
-            if (premium.IsOk)
-                return Ok(premium.Value);
-
-            else
-                return BadRequest(premium.Errors);
+                else
+                    return BadRequest(JsonConvert.SerializeObject(premium.Errors.Select(x=>x.Message)));
 
         }
         [HttpGet("GetOccupations")]

@@ -22,10 +22,12 @@ export class Home extends Component {
         }
         else {
             await fetch('PremiumCalculator/GetPremium?Occupation=' + this.refs.selectedoccupation.value + '&Age=' + this.refs.customerage.value + '&CoverAmount=' + this.refs.suminsured.value)
-                .then(response => response.json())
-                .then(response =>
-                    this.setState({ calculatedPremiumText: 'Calculated Premium: ' + response, messagestyle: 'black' })
-                );
+                .then((response) => { if (response.ok) return response.json(); else response.json().then(response => this.setState({ calculatedPremiumText:  response, messagestyle: 'red' }))})
+                .then((response) => {
+                    if(response)
+                        this.setState({ calculatedPremiumText: 'Calculated Premium: ' + response, messagestyle: 'black' })
+                }
+                )
         }
     }
     componentDidMount() {
@@ -57,7 +59,7 @@ export class Home extends Component {
                 <p>Occupation: {occupationsPlaceHolder}</p>
                 <p>Death - Sum Insured: <input ref="suminsured" type="text" id="suminsured" /></p>
                 <button onClick={this.calculatePremium}>Calculate</button>
-                <p><label style={{color: this.state.messagestyle}}>{this.state.calculatedPremiumText}</label></p>
+                <p><label style={{ color: this.state.messagestyle }}>{this.state.calculatedPremiumText}</label></p>
             </div>
         );
     }
